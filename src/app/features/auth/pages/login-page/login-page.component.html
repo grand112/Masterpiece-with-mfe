@@ -1,0 +1,27 @@
+<div class="background">
+  <div class="login-container">
+    <div class="text-container">
+      <h1>Cześć!</h1>
+      <p>Nie masz jeszcze konta w naszym serwisie? Zarejestruj się klikając przycisk poniżej.</p>
+      <button mat-button routerLink="/register">Stwórz konto</button>
+    </div>
+    <div class="form-container">
+      <h1>Witaj w CUSTOM_NAME</h1>
+      <button
+      class="mat-raised-button"
+      (click)="login()"
+      mat-raised-button
+      [disabled]="isLoading">
+        <div class="google-wrapper">
+          <div class="google-img"></div>
+          Zaloguj z Google
+        </div>
+      </button>
+      <app-login-form
+      [isLoading]="isLoading"
+      [logIn]="true"
+      (formData)="login($event)">
+      </app-login-form>
+    </div>
+  </div>
+</div>

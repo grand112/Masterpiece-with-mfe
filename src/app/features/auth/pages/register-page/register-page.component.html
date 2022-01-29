@@ -1,0 +1,19 @@
+<div class="background">
+  <div class="login-container">
+    <div class="form-container">
+      <h1>Zarejestruj się</h1>
+      <app-login-form
+      [isLoading]="isLoading"
+      [logIn]="false"
+      (formData)="register($event)">
+      </app-login-form>
+    </div>
+    <div class="text-container">
+      <h1>Hej!</h1>
+      <p>
+        Masz juz konto w naszym serwisie? Zaloguj się klikając przycisk poniżej.
+      </p>
+      <button mat-button routerLink="/">Zaloguj się</button>
+    </div>
+  </div>
+</div>

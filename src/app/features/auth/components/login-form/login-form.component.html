@@ -1,0 +1,45 @@
+<form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field class="form-control" *ngIf="!logIn">
+    <mat-label>Nazwa użytkownika</mat-label>
+    <input
+    matInput
+    formControlName="userName"
+    type="text"
+    required
+    minlength="3"/>
+    <mat-error *ngIf="userName?.hasError('required')">
+      Wymagane jest podanie nazwy użytkownika
+    </mat-error>
+    <mat-error *ngIf="userName?.hasError('minlength')">
+      Podana nazwa użytkownika jest zbyt krótka
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="form-control">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" type="text" required />
+    <mat-error *ngIf="email?.hasError('required')">
+      Wymagane jest podanie adresu Email
+    </mat-error>
+    <mat-error *ngIf="email?.hasError('email')">
+      Podany adres Email jest niepoprawny, spróbuj ponownie
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="form-control">
+    <mat-label>Hasło</mat-label>
+    <input matInput formControlName="password" type="password" required />
+    <mat-error *ngIf="password?.hasError('required')">
+      Wymagane jest podanie hasła
+    </mat-error>
+  </mat-form-field>
+  <button mat-raised-button type="submit">
+    <div *ngIf="isLoading">
+      <mat-spinner
+      [color]="'accent'"
+      [diameter]="30">
+    </mat-spinner>
+    </div>
+    <div *ngIf="!isLoading">
+      {{ logIn ? 'Zaloguj' : 'Zarejestruj' }}
+    </div>
+  </button>
+</form>
