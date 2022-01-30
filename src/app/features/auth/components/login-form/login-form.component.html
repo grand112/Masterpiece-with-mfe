@@ -31,10 +31,13 @@
       Wymagane jest podanie hasła
     </mat-error>
   </mat-form-field>
-  <button mat-raised-button type="submit">
+  <button
+  [ngClass]="logIn ? 'login' : 'register'"
+  mat-raised-button
+  type="submit">
     <div *ngIf="isLoading">
       <mat-spinner
-      [color]="'accent'"
+      [color]="logIn ? 'primary' : 'accent'"
       [diameter]="30">
     </mat-spinner>
     </div>
