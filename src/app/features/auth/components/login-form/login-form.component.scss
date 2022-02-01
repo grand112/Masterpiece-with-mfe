@@ -5,11 +5,11 @@ button {
 }
 
 .login {
-  background-color: #F057BF;
+  background-color: #FCB100;
 }
 
 .register {
-  background-color: #0083DD;
+  background-color: #FCB100;
 }
 
 form {
@@ -19,6 +19,10 @@ form {
   justify-content: space-evenly;
   height: 200px;
   width: 300px;
+}
+
+.submit-button {
+  margin-top: 10px;
 }
 
 mat-form-field {
