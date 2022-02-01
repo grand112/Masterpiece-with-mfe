@@ -33,6 +33,7 @@
   </mat-form-field>
   <button
   [ngClass]="logIn ? 'login' : 'register'"
+  [disabled]="isLoading"
   mat-raised-button
   type="submit">
     <div *ngIf="isLoading">

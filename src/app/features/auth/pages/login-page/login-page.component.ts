@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
@@ -22,7 +22,8 @@ export class LoginPageComponent {
     private authService: AuthService,
     private router: Router,
     private snack: SnackService,
-    private firestore: FirestoreService
+    private firestore: FirestoreService,
+    private cdr: ChangeDetectorRef
   ) { }
 
   login(loginData?: ILoginData): void {
@@ -35,10 +36,12 @@ export class LoginPageComponent {
         if (!loginData) {
           this.setUserData();
         }
+        this.cdr.markForCheck();
       },
       error: (error) => {
         this.snack.open(error.message)
         this.isLoading = false;
+        this.cdr.markForCheck();
       }
     });
   }

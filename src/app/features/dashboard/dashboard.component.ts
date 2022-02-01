@@ -17,7 +17,7 @@ export class DashboardComponent {
     private router: Router
   ) { }
 
-  logout() {
+  logout(): void {
     this.authService.logout().pipe(untilDestroyed(this)).subscribe(() => this.router.navigate(['/']));
   }
 }

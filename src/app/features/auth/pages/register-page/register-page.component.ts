@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
@@ -23,7 +23,8 @@ export class RegisterPageComponent {
     private authService: AuthService,
     private router: Router,
     private snack: SnackService,
-    private firestore: FirestoreService
+    private firestore: FirestoreService,
+    private cdr: ChangeDetectorRef
   ) { }
 
   register(loginData: ILoginData): void {
@@ -35,10 +36,12 @@ export class RegisterPageComponent {
         this.router.navigate(['/dashboard']),
         this.isLoading = false;
         this.setUserData(loginData);
+        this.cdr.markForCheck();
       },
       error: (error) => {
         this.snack.open(error.message)
         this.isLoading = false;
+        this.cdr.markForCheck();
       }
     });
   }
