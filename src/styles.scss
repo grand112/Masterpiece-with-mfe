@@ -19,3 +19,39 @@ body {
   font-weight: bold;
   padding: 20px 15px !important;
 }
+
+.editor-container {
+  border-radius: 25px;
+}
+
+.tui-image-editor-item.active {
+  background-color: transparent !important;
+}
+
+.color-picker {
+  position: fixed !important;
+  top: 28% !important;
+  left: 59% !important;
+}
+
+.editor-footer {
+  background: #FCB100 !important;
+  border-radius: 0 0 25px 25px;
+}
+
+.editor-header {
+  border-radius: 25px 25px 0 0;
+  background: #FCB100 !important;
+}
+
+.editor-footer-buttons {
+  background: #212121;
+  border-radius: 20px;
+  padding: 10px 10px;
+  margin: 10px;
+}
+
+.tie-btn-history {
+  display: none !important;
+}
+

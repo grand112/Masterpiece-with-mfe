@@ -1,16 +1,15 @@
+import { Injectable } from '@angular/core';
 import {
   Auth,
-  GoogleAuthProvider,
   createUserWithEmailAndPassword,
+  GoogleAuthProvider,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
   UserCredential,
 } from '@angular/fire/auth';
-import { Injectable } from '@angular/core';
-
-import { ILoginData } from 'src/app/models/login-data.model';
 import { from, Observable } from 'rxjs';
+import { ILoginData } from 'src/app/models/login-data.model';
 
 @Injectable({
   providedIn: 'root',
@@ -40,5 +39,9 @@ export class AuthService {
 
   getCurrentUserEmail(): string {
     return this.auth.currentUser.email;
+  }
+
+  getCurrentUserId(): string {
+    return this.auth.currentUser.uid;
   }
 }

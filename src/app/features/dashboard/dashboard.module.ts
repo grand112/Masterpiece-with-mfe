@@ -1,23 +1,21 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input'
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
-import { EditorComponent } from './components/editor/editor.component';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { TuiImageEditorModule } from 'tui-image-editor-angular';
+
+import { EditorComponent } from './components/editor-wrapper/editor/editor.component';
+import { EditorWrapperComponent } from './components/editor-wrapper/editor-wrapper.component';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
-import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
     EditorComponent,
-    DashboardComponent
+    DashboardComponent,
+    EditorWrapperComponent,
   ],
   imports: [
     CommonModule,
@@ -26,8 +24,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatIconModule,
     DashboardRoutingModule,
     TuiImageEditorModule,
-    TuiImageEditorModule,
-    MatSidenavModule
-  ]
+    MatSidenavModule,
+  ],
 })
 export class DashboardModule { }
