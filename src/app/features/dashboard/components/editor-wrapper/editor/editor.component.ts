@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { TuiImageEditorComponent } from 'tui-image-editor-angular';
 
 @Component({
@@ -12,13 +12,26 @@ export class EditorComponent implements AfterViewInit {
 
   @ViewChild(TuiImageEditorComponent) imageEditorComponent: TuiImageEditorComponent;
 
+  @Input() defaultFile: File;
+
   @Output() file: EventEmitter<File> = new EventEmitter();
   @Output() fileSaved: EventEmitter<void> = new EventEmitter();
+  @Output() errorMessage: EventEmitter<string> = new EventEmitter();
 
   ngAfterViewInit(): void {
     this.addListenerToDownloadButton();
     this.addClassesToEditorElements();
+    this.appendNewImageButton();
     this.imageEditorComponent.loadImage = this.uploadFile.bind(this);
+  }
+
+  private appendNewImageButton(): void {
+    const newImageButton = document.createElement('div');
+    newImageButton.innerHTML = '<img src="assets/start.png" width="36" height="36">';
+    newImageButton.classList.add('editor-start-button');
+    newImageButton.addEventListener('click', () => this.uploadFile(this.defaultFile));
+    document.getElementsByTagName(this.editorTag)[0].children[0].children[0].children[0].children[0].children[0].
+      insertAdjacentElement('beforebegin', newImageButton);
   }
 
   private isFileApiSupported(): boolean {
@@ -30,16 +43,23 @@ export class EditorComponent implements AfterViewInit {
   }
 
   private addClassesToEditorElements(): void {
-    document.getElementsByTagName(this.editorTag)[0].children[0].classList.add('editor-container');
-    document.getElementsByTagName(this.editorTag)[0].children[0].children[0].classList.add('editor-header');
-    document.getElementsByTagName(this.editorTag)[0].children[0].children[2].classList.add('editor-footer');
-    document.getElementsByTagName(this.editorTag)[0].children[0].children[2].children[0].classList.add('editor-footer-buttons');
+    const editor = document.getElementsByTagName(this.editorTag)[0].children[0];
+    const editorHeader = editor.children[0];
+    const editorFooter = editor.children[2];
+    const editorFooterButtons = editorFooter.children[0];
+    const editorFirstButtonSection = editorFooterButtons.children[0];
+
+    editor.classList.add('editor-container');
+    editorHeader.classList.add('editor-header');
+    editorFooter.classList.add('editor-footer');
+    editorFooterButtons.classList.add('editor-footer-buttons');
+    editorFirstButtonSection.classList.add('editor-first-button-section');
   }
 
   private uploadFile(file: File): void {
     if (!this.isFileApiSupported()) {
-      alert('This browser does not support file-api');
-      return;
+      const errorMessage = 'Obraz w wybranym formacie nie jest obsługiwany przez edytor. Wybierz plik w innym fomacie.';
+      this.errorMessage.emit(errorMessage);
     }
 
     this.file.emit(file);
@@ -59,7 +79,6 @@ export class EditorComponent implements AfterViewInit {
       this.imageEditorComponent.imageEditor.clearUndoStack();
       this.imageEditorComponent.imageEditor.clearRedoStack();
       this.imageEditorComponent.imageEditor._invoker.fire('executeCommand', 'Load');
-      document.getElementsByClassName('editor-footer-buttons')[0].children[0].children[0].dispatchEvent(new Event('click'));
     });
   }
 }

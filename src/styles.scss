@@ -20,6 +20,24 @@ body {
   padding: 20px 15px !important;
 }
 
+.preset-color {
+  display: block !important;
+  float: left !important;
+}
+
+.editor-start-button {
+  padding: 4px 0 0 3px;
+  margin-right: -1px;
+}
+
+.editor-start-button:hover {
+  cursor: pointer;
+}
+
+.editor-first-button-section {
+  height: 44px;
+}
+
 .editor-container {
   border-radius: 25px;
 }
@@ -51,7 +69,11 @@ body {
   margin: 10px;
 }
 
-.tie-btn-history {
-  display: none !important;
+tui-image-editor-menus-buttons-history {
+  display: none;
+}
+
+tui-image-editor-menus-buttons-reset {
+  display: none;
 }
 
