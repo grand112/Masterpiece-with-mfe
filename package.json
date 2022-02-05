@@ -3,8 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "start-local": "ng serve -o",
-    "build": "ng build --prod",
-    "watch": "ng build --watch --configuration development",
+    "build": "ng build",
     "test": "ng test"
   },
   "private": true,
@@ -45,6 +44,7 @@
     "@angular-devkit/build-angular": "~13.2.0",
     "@angular/cli": "~13.2.0",
     "@angular/compiler-cli": "~13.2.0",
+    "@types/file-saver": "^2.0.5",
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.11.1",
     "jasmine-core": "~4.0.0",

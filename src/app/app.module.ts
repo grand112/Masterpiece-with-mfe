@@ -28,7 +28,6 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserAnimationsModule,
     MatSnackBarModule,
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

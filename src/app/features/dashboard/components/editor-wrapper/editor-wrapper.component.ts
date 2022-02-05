@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -22,12 +23,13 @@ export class EditorWrapperComponent implements OnInit {
     private firestore: FirestoreService,
     private snack: SnackService,
     private cdr: ChangeDetectorRef,
+    private http: HttpClient,
   ) { }
 
   ngOnInit(): void {
-    this.firestorage.getFileBlob('default.jpg').pipe(untilDestroyed(this))
-      .subscribe((fileBlob: Blob) => {
-        this.defaultFile = new File([fileBlob], 'fileName');
+    this.http.get('assets/default.jpg', { responseType: 'blob' }).pipe(untilDestroyed(this))
+      .subscribe((defaultBlob: Blob) => {
+        this.defaultFile = new File([defaultBlob], 'fileName');
         this.cdr.detectChanges();
       });
   }
