@@ -26,16 +26,24 @@ body {
 }
 
 .editor-start-button {
-  padding: 4px 2px 0 3px;
+  padding: 5px 2px 0 3px;
   margin-right: -1px;
 }
 
-.editor-start-button:hover, .editor-save-button:hover {
+.editor-start-button:hover, .editor-save-button:hover, .editor-download-button {
   cursor: pointer;
 }
 
+.editor-preview-button {
+  margin-top: -1px !important;
+}
+
+.editor-download-button {
+  padding: 8px 4px 0 4px;
+}
+
 .editor-save-button {
-  padding: 4px 5px 0 3px;
+  padding: 6px 5px 0 3px;
 }
 
 .editor-first-button-section {

@@ -1,4 +1,5 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { FileSaverService } from 'ngx-filesaver';
 import { TuiImageEditorComponent } from 'tui-image-editor-angular';
 
 @Component({
@@ -17,25 +18,50 @@ export class EditorComponent implements AfterViewInit {
   @Output() fileSaved = new EventEmitter<File>();
   @Output() infoMessage = new EventEmitter<string>();
 
+  constructor(private fileSaver: FileSaverService) { }
+
   ngAfterViewInit(): void {
     this.addClassesToEditorElements();
     this.appendSaveButton();
     this.appendNewImageButton();
+    this.replaceDownloadButton();
+    this.appendDownloadButton();
     this.imageEditorComponent.loadImage = this.uploadFile.bind(this);
   }
 
+  private appendDownloadButton(): void {
+    const downloadButton = document.createElement('div');
+    downloadButton.innerHTML = '<img src="assets/download.png" width="27" height="25">';
+    downloadButton.classList.add('editor-download-button');
+    downloadButton.addEventListener('click', () => this.downloadFile());
+    document.getElementsByTagName(this.editorTag)[0].children[0].children[0].children[0].children[0].children[2].
+      insertAdjacentElement('afterend', downloadButton);
+  }
+
+  private downloadFile(): void {
+    const dataURL = this.imageEditorComponent.imageEditor.toDataURL();
+    const blob = this.dataUrlToBlob(dataURL);
+    this.fileSaver.save(blob);
+  }
+
+  private replaceDownloadButton(): void {
+    const downloadButton = document.getElementsByClassName('tie-btn-download')[0];
+    downloadButton.classList.add('editor-preview-button');
+    downloadButton.innerHTML = '<img src="assets/preview.png" width="28" height="29">';
+  }
+
   private appendSaveButton(): void {
-    const newImageButton = document.createElement('div');
-    newImageButton.innerHTML = '<img src="assets/save.png" width="34" height="34">';
-    newImageButton.classList.add('editor-save-button');
-    newImageButton.addEventListener('click', () => this.saveFile());
+    const saveButton = document.createElement('div');
+    saveButton.innerHTML = '<img src="assets/save.png" width="31" height="31">';
+    saveButton.classList.add('editor-save-button');
+    saveButton.addEventListener('click', () => this.saveFile());
     document.getElementsByTagName(this.editorTag)[0].children[0].children[0].children[0].children[0].children[0].
-      insertAdjacentElement('beforebegin', newImageButton);
+      insertAdjacentElement('beforebegin', saveButton);
   }
 
   private appendNewImageButton(): void {
     const newImageButton = document.createElement('div');
-    newImageButton.innerHTML = '<img src="assets/start.png" width="35" height="35">';
+    newImageButton.innerHTML = '<img src="assets/start.png" width="35" height="33">';
     newImageButton.classList.add('editor-start-button');
     newImageButton.addEventListener('click', () => this.uploadFile(this.defaultFile));
     document.getElementsByTagName(this.editorTag)[0].children[0].children[0].children[0].children[0].children[0].
