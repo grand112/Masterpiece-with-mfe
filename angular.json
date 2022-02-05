@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "masterpiece": {
+    "masterpiece-with-mfe": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/masterpiece",
+            "outputPath": "dist/masterpiece-with-mfe",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -73,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "masterpiece:build:production"
+              "browserTarget": "masterpiece-with-mfe:build:production"
             },
             "development": {
-              "browserTarget": "masterpiece:build:development"
+              "browserTarget": "masterpiece-with-mfe:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -84,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "masterpiece:build"
+            "browserTarget": "masterpiece-with-mfe:build"
           }
         },
         "test": {
@@ -109,5 +109,5 @@
       }
     }
   },
-  "defaultProject": "masterpiece"
+  "defaultProject": "masterpiece-with-mfe"
 }

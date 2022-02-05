@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -34,16 +35,16 @@ export class EditorWrapperComponent implements OnInit {
       });
   }
 
-  saveFile(file: File): void {
+  saveFile(fileEvent: any): void {
     const userId = this.auth.getCurrentUserId();
     const fileId = Math.random().toString(16).slice(2);
-    this.firestorage.saveFile(userId, fileId, file);
+    this.firestorage.saveFile(userId, fileId, fileEvent.detail);
 
     const documentPath = `users/${userId}/gallery/${fileId}`;
     this.firestore.setDocument(documentPath, { fileId });
   }
 
-  handleMessage(message: string): void {
-    this.snack.open(message);
+  handleMessage(messageEvent: any): void {
+    this.snack.open(messageEvent.detail);
   }
 }

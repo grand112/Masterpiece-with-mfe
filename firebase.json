@@ -1,8 +1,8 @@
 {
   "hosting": [
     {
-      "target": "masterpiece",
-      "public": "dist/masterpiece",
+      "target": "masterpiece-with-mfe",
+      "public": "dist/masterpiece-with-mfe",
       "ignore": [
         "firebase.json",
         "**/.*",
