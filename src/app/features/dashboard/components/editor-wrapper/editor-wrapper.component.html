@@ -1,8 +1,7 @@
 <div class="editor-wrapper">
   <app-editor
   [defaultFile]="defaultFile"
-  (file)="uploadFile($event)"
-  (fileSaved)="saveFile()"
-  (errorMessage)="handleError($event)">
+  (fileSaved)="saveFile($event)"
+  (infoMessage)="handleMessage($event)">
   </app-editor>
 </div>

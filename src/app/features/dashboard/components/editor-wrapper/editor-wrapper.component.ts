@@ -16,8 +16,6 @@ import { FirestoreService } from './../../../../services/firestore/firestore.ser
 export class EditorWrapperComponent implements OnInit {
   defaultFile: File;
 
-  private file: File;
-
   constructor(
     private firestorage: FirestorageService,
     private auth: AuthService,
@@ -34,20 +32,16 @@ export class EditorWrapperComponent implements OnInit {
       });
   }
 
-  uploadFile(file: File): void {
-    this.file = file;
-  }
-
-  saveFile(): void {
+  saveFile(file: File): void {
     const userId = this.auth.getCurrentUserId();
     const fileId = Math.random().toString(16).slice(2);
-    this.firestorage.saveFile(userId, fileId, this.file);
+    this.firestorage.saveFile(userId, fileId, file);
 
     const documentPath = `users/${userId}/gallery/${fileId}`;
     this.firestore.setDocument(documentPath, { fileId });
   }
 
-  handleError(errorMessage: string): void {
-    this.snack.open(errorMessage);
+  handleMessage(message: string): void {
+    this.snack.open(message);
   }
 }

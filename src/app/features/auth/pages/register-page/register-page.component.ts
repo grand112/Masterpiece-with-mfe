@@ -39,7 +39,7 @@ export class RegisterPageComponent {
           this.cdr.markForCheck();
         },
         error: (error) => {
-          this.snack.open(error.message);
+          this.snack.openError(error.message);
           this.isLoading = false;
           this.cdr.markForCheck();
         },
