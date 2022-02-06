@@ -24,7 +24,6 @@ import { AppRoutingModule } from './app-routing.module';
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),
-    provideStorage(() => getStorage()),
     BrowserAnimationsModule,
     MatSnackBarModule,
   ],
