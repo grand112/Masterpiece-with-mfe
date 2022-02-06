@@ -12,7 +12,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ScriptLoaderService } from './services/script-loader/script-loader.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,7 +32,5 @@ import { ScriptLoaderService } from './services/script-loader/script-loader.serv
 })
 export class AppModule {
 
-  constructor(private scriptLoader: ScriptLoaderService) {
-    this.scriptLoader.loadImageEditor();
-  }
+  constructor() { }
 }
