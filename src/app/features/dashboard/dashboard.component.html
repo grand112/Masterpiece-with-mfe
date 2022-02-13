@@ -3,25 +3,84 @@
     <div class="toolbar-left">
       <button
       mat-icon-button
-      class="example-icon"
       (click)="drawer.toggle()">
-        <mat-icon>menu</mat-icon>
+        <mat-icon class="menu-icon toolbar-icon-left">menu</mat-icon>
       </button>
-      <span>Masterpiece</span>
+      <img class="logo-img" mat-card-image src="assets/logo-white.png" routerLink="profile">
     </div>
     <div class="toolbar-right">
-      <a (click)="logout()">Wyloguj</a>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon class="toolbar-icon-right">more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu" class="top-menu">
+        <button mat-menu-item (click)="logout()" class="logut-button">
+          <mat-icon>logout</mat-icon>
+          <span class="top-menu-option">Wyloguj</span>
+        </button>
+      </mat-menu>
     </div>
   </div>
 </mat-toolbar>
 
-<mat-drawer-container autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side">
-    <p>Auto-resizing sidenav</p>
+<mat-drawer-container>
+  <mat-drawer #drawer mode="side" [opened]="true">
+    <div class="drawer-content">
+      <div class="upper-buttons">
+        <button
+        mat-button
+        class="drawer-button"
+        routerLink="profile"
+        routerLinkActive="active-link">
+          <div class="drawer-button-content">
+            <mat-icon>person</mat-icon>
+            <span class="drawer-button-text">Profil</span>
+          </div>
+        </button>
+        <button
+        mat-button
+        class="drawer-button"
+        routerLink="gallery"
+        routerLinkActive="active-link">
+          <div class="drawer-button-content">
+            <mat-icon>collections</mat-icon>
+            <span class="drawer-button-text">Galeria</span>
+          </div>
+        </button>
+        <button
+        mat-button
+        class="drawer-button"
+        routerLink="editor"
+        routerLinkActive="active-link">
+          <div class="drawer-button-content">
+            <mat-icon>brush</mat-icon>
+            <span class="drawer-button-text">Edytor</span>
+          </div>
+        </button>
+        <button
+        mat-button
+        class="drawer-button"
+        routerLink="users"
+        routerLinkActive="active-link">
+          <div class="drawer-button-content">
+            <mat-icon>people</mat-icon>
+            <span class="drawer-button-text">Artyści</span>
+          </div>
+        </button>
+      </div>
+      <div class="lower-buttons">
+        <button
+        mat-button
+        class="drawer-button"
+        (click)="drawer.toggle()">
+          <div class="drawer-button-close">
+            <mat-icon>keyboard_double_arrow_left</mat-icon>
+          </div>
+        </button>
+      </div>
+    </div>
   </mat-drawer>
   <div class="child-wrapper">
-    <app-editor-wrapper>
-    </app-editor-wrapper>
+    <router-outlet></router-outlet>
   </div>
 </mat-drawer-container>
 

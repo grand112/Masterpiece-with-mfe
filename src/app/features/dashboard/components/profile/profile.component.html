@@ -1,0 +1,102 @@
+<div class="main">
+  <div class="spinner" *ngIf="galleryLength < 0">
+    <mat-spinner
+    [diameter]="100">
+    </mat-spinner>
+  </div>
+  <div *ngIf="galleryLength >= 0">
+    <div class="profile-header">
+      <p class="profile-header-text">{{ headerInfo }}</p>
+      <mat-icon class="profile-header-icon">emoji_people</mat-icon>
+    </div>
+    <div class="profile">
+      <div class="profile-part">
+        <div class="header-text">
+          {{ userId !== currentUserId ? 'Liczba obrazów w galerii:' : 'Liczba obrazów w Twojej galerii:'}}
+        </div>
+        <div class="image-count">
+          {{ galleryLength }}
+        </div>
+        <div class="gallery">
+          <button
+          class="gallery-button"
+          mat-raised-button
+          (click)="onGalleryClick()">
+            Galeria
+            <mat-icon>collections</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div class="profile-part">
+        <div class="header-text">
+          Ostatnio dodany obraz:
+        </div>
+        <div class="image-section" *ngIf="!latestImageNotFound">
+          <div class="spinner-image" *ngIf="!latestImage || !latestImage?.isLoaded">
+            <mat-spinner
+            [diameter]="50">
+            </mat-spinner>
+          </div>
+          <div *ngIf="latestImage">
+            <img
+            (click)="onGalleryClick()"
+            (load)="onImgLoaded(latestImage)"
+            class="card-img"
+            mat-card-image
+            [src]="latestImage.url">
+          </div>
+        </div>
+        <div class="not-found" *ngIf="latestImageNotFound">
+          {{ userId !== currentUserId ? 'Ten użytkownik nie dodał jeszcze żadnego obrazu' : 'Nie dodano jeszcze żadnego obrazu' }}
+          <mat-icon class="not-found-icon">sentiment_dissatisfied</mat-icon>
+        </div>
+      </div>
+      <div class="profile-part">
+        <div class="header-text">
+          Ulubiony obraz:
+        </div>
+        <div class="image-section" *ngIf="!favoriteImageNotFound">
+          <div class="spinner-image" *ngIf="!favoriteImage || !favoriteImage?.isLoaded">
+            <mat-spinner
+            [diameter]="50">
+            </mat-spinner>
+          </div>
+          <div *ngIf="favoriteImage">
+            <img
+            (load)="onImgLoaded(favoriteImage)"
+            class="card-img"
+            mat-card-image
+            [src]="favoriteImage.url">
+          </div>
+        </div>
+        <div class="not-found" *ngIf="favoriteImageNotFound">
+          {{ userId !== currentUserId ? 'Ten użytkownik nie dodał jeszcze żadnego obrazu do ulubionych' : 'Nie dodano jeszcze żadnego obrazu do ulubionych' }}
+          <mat-icon class="not-found-icon">sentiment_dissatisfied</mat-icon>
+        </div>
+      </div>
+      <div class="profile-part">
+        <div class="header-text">
+          {{ userId !== currentUserId ? 'Informacje o użytkowniku:' : 'Informacje o tobie:' }}
+        </div>
+        <textarea #textareaInfo class="textarea-info" maxlength="240" [readonly]="!editTextarea">{{ about ? about : userId !== currentUserId ? 'Uzytkownik nie podał jeszcze żadnych informacji o sobie' : 'Podaj informacje o sobie' }}</textarea>
+        <button
+        *ngIf="userId === currentUserId && !editTextarea"
+        class="textarea-button"
+        mat-raised-button
+        (click)="onEditClick()">
+          Edytuj
+        <mat-icon>edit</mat-icon>
+        </button>
+        <button
+        *ngIf="userId === currentUserId && editTextarea"
+        class="textarea-button"
+        [disabled]="isSaveing"
+        mat-raised-button
+        (click)="onSaveClick()">
+          Zapisz
+        <mat-icon>save</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

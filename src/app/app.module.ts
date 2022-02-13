@@ -29,7 +29,4 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-
-  constructor() { }
-}
+export class AppModule { }

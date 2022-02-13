@@ -18,7 +18,94 @@
 
 mat-drawer-container{
   background-color: transparent;
-  height: 90%;
+  height: 89.7%;
   padding-top: 40px
 }
 
+mat-toolbar {
+  background-color: #212121;
+  height: 100px;
+}
+
+mat-drawer {
+  background-color: #212121;
+  padding: 20px 0 20px 0 !important;
+  width: 200px;
+}
+
+.logo-img {
+  height: 80px;
+  margin-left: 50px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.logut-button {
+  color: #FCB100;
+  background-color: #212121;
+}
+
+.logut-button:hover {
+  color: #212121;
+  background-color: #FCB100;
+}
+
+.drawer-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.drawer-button {
+  height: 60px;
+  width: 100%;
+  color: #FCB100;
+}
+
+.drawer-button:hover, .active-link {
+  background-color: #FCB100;
+  color: #212121;
+}
+
+.top-menu-option {
+  color: white;
+  font-weight: bold;
+}
+
+.drawer-button-text {
+  color: white;
+}
+
+.drawer-button-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 20px;
+}
+
+.drawer-button-close {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.toolbar-icon-right {
+  color:#FCB100;
+  transform: scale(1.5);
+}
+
+.toolbar-icon-left {
+  color: #FCB100;
+  transform: scale(2);
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.toolbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.menu-icon {
+  margin-bottom: 6px;
+}

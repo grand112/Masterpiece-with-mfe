@@ -10,6 +10,36 @@ body {
   "Helvetica Neue", sans-serif;
 }
 
+.mat-card-image:first-child {
+  margin-top: 0px !important;
+  border-top-left-radius: 40px !important;
+  border-top-right-radius: 40px !important;
+}
+
+.mat-progress-spinner circle, .mat-spinner circle {
+  stroke: #FCB100 !important;
+}
+
+.gallery-card {
+  .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #212121 !important;
+  }
+}
+
+.spinner-image {
+  .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #212121 !important;
+  }
+}
+
+mat-dialog-container {
+  background: #212121 !important;
+}
+
+.top-menu {
+  background: #212121 !important;
+}
+
 .snackbar {
   background: white;
   color: #212121;

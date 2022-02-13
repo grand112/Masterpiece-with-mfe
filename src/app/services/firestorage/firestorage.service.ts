@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { ListResult } from 'firebase/storage';
 import { Observable, switchMap } from 'rxjs';
 
 @Injectable({
@@ -23,7 +24,15 @@ export class FirestorageService {
       this.http.get(fileUrl, { responseType: 'blob' })));
   }
 
-  private getFileUrl(filePath: string): Observable<string> {
+  getStorageFolder(folderPath: string): Observable<ListResult> {
+    return this.storage.ref(folderPath).listAll();
+  }
+
+  getFileUrl(filePath: string): Observable<string> {
     return this.storage.ref(filePath).getDownloadURL();
+  }
+
+  deleteFile(filePath: string): Observable<any> {
+    return this.storage.ref(filePath).delete();
   }
 }

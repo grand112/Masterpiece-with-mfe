@@ -1,0 +1,136 @@
+.main {
+  background-color: #212121;
+  width: 100vh;
+  height: 100%;
+  border-radius: 25px;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  border-radius: 25px 25px 0 0;
+  background-color: #FCB100;
+}
+
+.spinner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-header-text {
+  font-weight: bold;
+  font-size: 25px;
+  color: #212121;
+}
+
+.profile-header-icon {
+  margin-left: 20px;
+  margin-bottom: 10px;
+  transform: scale(1.5);
+  color: #212121;
+}
+
+.profile {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-flow: wrap;
+  height: 67.5vh;
+  width: 100%;
+  overflow: auto;
+  padding-top: 20px;
+  overflow-x: hidden;
+}
+
+.profile-part {
+  background-color: #FCB100;
+  border-radius: 25px;
+  height: 30vh;
+  width: 45vh;
+  margin: 15px;
+}
+
+.header-text {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  color: #212121;
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 25px;
+}
+
+.image-count {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  color: #212121;
+  font-size: 80px;
+  font-weight: bold;
+  margin-top: 75px;
+}
+
+.gallery{
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+.gallery-button {
+  color: #FCB100;
+  background-color: #212121;
+}
+
+.card-img {
+  height: 180px;
+  width: 270px;
+  border-radius: 40px;
+  padding: 0 15px;
+}
+
+.image-section {
+  cursor: pointer;
+  flex-direction: column;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.not-found {
+  width: 100%;
+  margin-top: 30px;
+  font-weight: bold;
+  text-align: center;
+  font-size: 20px;
+}
+
+.not-found-icon {
+  margin-top: 30px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  transform: scale(2);
+}
+
+.textarea-info {
+  width: 39.5vh;
+  height: 16vh;
+  margin: 25px 25px 0 25px;
+  resize: none;
+  background-color: #212121;
+  color: white;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.textarea-button {
+  float: right;
+  color: #FCB100;
+  background-color: #212121;
+  margin-right: 25px;
+}

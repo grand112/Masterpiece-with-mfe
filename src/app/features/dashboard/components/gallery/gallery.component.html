@@ -1,0 +1,93 @@
+<div class="main">
+  <div class="spinner" *ngIf="isLoading">
+    <mat-spinner
+    [diameter]="100">
+    </mat-spinner>
+  </div>
+  <div *ngIf="!isLoading">
+    <div class="gallery-header">
+      <p class="gallery-header-text">{{ headerInfo }}</p>
+      <mat-icon class="gallery-header-icon">{{ gallery.length ? 'palette' : 'sentiment_dissatisfied'}}</mat-icon>
+      <button
+      mat-raised-button
+      class="profile-button"
+      *ngIf="userId !== currentUserId"
+      (click)="onProfileClick()">
+        Profil
+        <mat-icon>person</mat-icon>
+      </button>
+    </div>
+    <div class="gallery">
+      <mat-card
+      class="gallery-card"
+      *ngFor="let image of gallery"
+      (click)="openDialog(image)">
+        <mat-card-header class="card-header">
+        </mat-card-header>
+        <div class="spinner" *ngIf="!image.isLoaded">
+          <mat-spinner
+          [diameter]="50">
+          </mat-spinner>
+        </div>
+        <img class="card-img" mat-card-image [src]="image.url" (load)="onImgLoaded(image)">
+        <mat-card-content class="card-content">
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<ng-template #dialogContent>
+  <mat-dialog-content class="mat-typography" >
+    <div class="modal-spinner" *ngIf="isModalImgLoading">
+      <mat-spinner
+      [diameter]="100">
+      </mat-spinner>
+    </div>
+    <img
+    class="modal-img"
+    mat-card-image
+    [src]="selectedImage.url"
+    (load)="onModalImgLoaded()">
+  </mat-dialog-content>
+  <div class="dialog-actions">
+    <mat-dialog-actions>
+      <button
+      *ngIf="userId === currentUserId"
+      class="modal-button"
+      [disabled]="isFavoriteLoading"
+      mat-raised-button
+      (click)="onFavoriteClick(selectedImage)">
+        {{ selectedImage.isFavorite ? 'Usuń z ulubionych' : 'Oznacz jako ulubiony' }}
+        <mat-icon>{{ selectedImage.isFavorite ? 'disabled_by_default' : 'star' }}</mat-icon>
+      </button>
+    </mat-dialog-actions>
+    <mat-dialog-actions>
+      <button
+      *ngIf="userId === currentUserId"
+      class="delete-button"
+      [disabled]="isDeleting"
+      mat-raised-button
+      (click)="onDeleteClick(selectedImage.name)">
+        Usuń
+        <mat-icon>delete_outline</mat-icon>
+      </button>
+      <button
+      *ngIf="userId === currentUserId"
+      class="modal-button"
+      [disabled]="isDeleting"
+      (click)="onEditClick(selectedImage.name)"
+      mat-raised-button>
+        Edytuj
+        <mat-icon>brush</mat-icon>
+      </button>
+      <button
+      [disabled]="isDeleting"
+      mat-button
+      mat-dialog-close
+      class="modal-button">
+        Zamknij
+      </button>
+    </mat-dialog-actions>
+  </div>
+</ng-template>

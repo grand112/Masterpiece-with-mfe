@@ -1,6 +1,7 @@
 <div class="editor-wrapper">
   <image-editor
-  [defaultFile]="defaultFile"
+  [openFile]="fileToOpen$ | async"
+  [defaultFile]="defaultFile$ | async"
   (fileSaved)="saveFile($event)"
   (infoMessage)="handleMessage($event)">
   </image-editor>
