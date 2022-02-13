@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { Observable } from 'rxjs';
 import { ILoginData } from 'src/app/models/login-data.model';
 import { IUserData } from 'src/app/models/user-data.model';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -30,14 +31,7 @@ export class LoginPageComponent {
     this.isLoading = true;
     const logInMethod$ = loginData ? this.authService.login(loginData) : this.authService.loginWithGoogle();
     logInMethod$.pipe(untilDestroyed(this)).subscribe({
-      next: () => {
-        this.router.navigate(['/dashboard']);
-        this.isLoading = false;
-        if (!loginData) {
-          this.setUserData();
-        }
-        this.cdr.markForCheck();
-      },
+      next: () => !loginData ? this.setUserData().pipe(untilDestroyed(this)).subscribe(() => this.handleLogIn()) : this.handleLogIn(),
       error: (error) => {
         this.snack.openError(error.message);
         this.isLoading = false;
@@ -46,12 +40,18 @@ export class LoginPageComponent {
     });
   }
 
-  private setUserData(): void {
+  private setUserData(): Observable<void> {
     const userData: IUserData = {
       displayName: this.authService.getCurrentUserDisplayName(),
       email: this.authService.getCurrentUserEmail(),
       userId: this.authService.getCurrentUserId(),
     };
-    this.firestore.setDocument(`users/${userData.userId}`, userData);
+    return this.firestore.setDocument(`users/${userData.userId}`, userData);
+  }
+
+  private handleLogIn(): void {
+    this.router.navigate(['/dashboard']);
+    this.isLoading = false;
+    this.cdr.markForCheck();
   }
 }
