@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
@@ -36,7 +35,6 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
     MatButtonModule,
     MatToolbarModule,
     MatIconModule,
-    MatCardModule,
     MatListModule,
     DashboardRoutingModule,
     MatSidenavModule,

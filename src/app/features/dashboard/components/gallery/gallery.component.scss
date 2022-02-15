@@ -24,30 +24,12 @@
   align-items: center;
 }
 
-.gallery {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-flow: wrap;
+.gallery-wrapper {
   height: 67.5vh;
   width: 100%;
   overflow: auto;
   padding-top: 20px;
   overflow-x: hidden;
-}
-
-.card-img {
-  height: 180px;
-  width: 250px;
-  border-radius: 40px;
-  padding: 0 15px;
-}
-
-.gallery-card {
-  margin: 10px;
-  background-color: #FCB100;
-  cursor: pointer;
-  border-radius: 25px;
 }
 
 .dialog-actions {

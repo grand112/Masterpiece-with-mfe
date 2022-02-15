@@ -17,22 +17,11 @@
         <mat-icon>person</mat-icon>
       </button>
     </div>
-    <div class="gallery">
-      <mat-card
-      class="gallery-card"
-      *ngFor="let image of gallery"
-      (click)="openDialog(image)">
-        <mat-card-header class="card-header">
-        </mat-card-header>
-        <div class="spinner" *ngIf="!image.isLoaded">
-          <mat-spinner
-          [diameter]="50">
-          </mat-spinner>
-        </div>
-        <img class="card-img" mat-card-image [src]="image.url" (load)="onImgLoaded(image)">
-        <mat-card-content class="card-content">
-        </mat-card-content>
-      </mat-card>
+    <div class="gallery-wrapper">
+      <gallery-editor
+      [gallery]="gallery"
+      (imageClicked)="openDialog($event)">
+      </gallery-editor>
     </div>
   </div>
 </div>

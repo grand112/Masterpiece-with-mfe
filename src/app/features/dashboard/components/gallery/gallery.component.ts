@@ -55,10 +55,11 @@ export class GalleryComponent implements OnInit {
     this.router.navigate(['dashboard/profile', { id: this.userId }]);
   }
 
-  openDialog(selectedImage: IGallery): void {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  openDialog(event: any): void {
     this.isModalImgLoading = true;
-    this.selectedImage = selectedImage;
-    this.checkIfFavorite(selectedImage);
+    this.selectedImage = event.detail;
+    this.checkIfFavorite(event.detail);
   }
 
   onModalImgLoaded(): void {
