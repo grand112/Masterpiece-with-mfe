@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Observable, switchMap } from 'rxjs';
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { ILoginData } from 'src/app/models/login-data.model';
 import { IUserData } from 'src/app/models/user-data.model';
 import { AuthService } from 'src/app/services/auth/auth.service';

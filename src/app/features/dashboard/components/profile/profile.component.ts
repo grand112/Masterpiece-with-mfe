@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef,Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { map, switchMap } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 import { IGallery } from 'src/app/models/gallery.model';
 import { SnackService } from 'src/app/services/snack/snack.service';
 

@@ -3,7 +3,8 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ListResult } from 'firebase/storage';
-import { forkJoin, Observable,of,switchMap } from 'rxjs';
+import { forkJoin, Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { IGallery } from 'src/app/models/gallery.model';
 import { FirestoreService } from 'src/app/services/firestore/firestore.service';
 
