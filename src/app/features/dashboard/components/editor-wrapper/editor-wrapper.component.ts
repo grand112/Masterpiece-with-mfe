@@ -7,9 +7,11 @@ import { NgxImageCompressService } from 'ngx-image-compress';
 import { from, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { ElementLoaderService } from 'src/app/services/element-loader/element-loader.service';
 import { FirestorageService } from 'src/app/services/firestorage/firestorage.service';
 import { SnackService } from 'src/app/services/snack/snack.service';
 
+import { Element } from '../../../../models/element.enum';
 import { FirestoreService } from './../../../../services/firestore/firestore.service';
 
 @UntilDestroy()
@@ -24,6 +26,7 @@ export class EditorWrapperComponent implements OnInit {
   fileToOpen$: Observable<File>;
   userId: string;
   fileNameFromRoute: string;
+  editorLoaded$ = this.elementLoader.loadElement(Element.EDITOR);
 
   constructor(
     private firestorage: FirestorageService,
@@ -33,6 +36,7 @@ export class EditorWrapperComponent implements OnInit {
     private http: HttpClient,
     private route: ActivatedRoute,
     private imageCompress: NgxImageCompressService,
+    private elementLoader: ElementLoaderService,
   ) { }
 
   ngOnInit(): void {

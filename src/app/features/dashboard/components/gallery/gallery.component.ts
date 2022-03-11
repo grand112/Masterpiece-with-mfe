@@ -6,8 +6,10 @@ import { ListResult } from 'firebase/storage';
 import { forkJoin, Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { IGallery } from 'src/app/models/gallery.model';
+import { ElementLoaderService } from 'src/app/services/element-loader/element-loader.service';
 import { FirestoreService } from 'src/app/services/firestore/firestore.service';
 
+import { Element } from '../../../../models/element.enum';
 import { AuthService } from './../../../../services/auth/auth.service';
 import { FirestorageService } from './../../../../services/firestorage/firestorage.service';
 import { SnackService } from './../../../../services/snack/snack.service';
@@ -31,6 +33,7 @@ export class GalleryComponent implements OnInit {
   userName: string;
   headerInfo: string;
   dialogRef: MatDialogRef<any>;
+  galleryLoaded$ = this.elementLoader.loadElement(Element.GALLERY);
 
   @ViewChild('dialogContent') dialogContent: TemplateRef<any>;
 
@@ -43,6 +46,7 @@ export class GalleryComponent implements OnInit {
     private dialog: MatDialog,
     private route: ActivatedRoute,
     private router: Router,
+    private elementLoader: ElementLoaderService,
   ) { }
 
   ngOnInit(): void {

@@ -1,4 +1,4 @@
-<div class="editor-wrapper">
+<div class="editor-wrapper" *ngIf="editorLoaded$">
   <image-editor
   [openFile]="fileToOpen$ | async"
   [defaultFile]="defaultFile$ | async"
