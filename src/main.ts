@@ -10,5 +10,6 @@ if (environment.production) {
   } catch (e) {}
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+setTimeout(() => {
+  platformBrowserDynamic().bootstrapModule(AppModule).catch(err => console.error(err));
+});
